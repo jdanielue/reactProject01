@@ -22,12 +22,13 @@ function App() {
 
   function Message (params) {
     setSubmitMessage("password and name are corrrect");
-    <h3>{submitMessage}</h3>
+    return (<h3>{submitMessage}</h3>)
   }
 
   function clear(props) {
     setPswd("");
     setName("");
+    setSubmitMessage("");
   }
   return (
     <Fragment>
