@@ -1,16 +1,44 @@
-function App() {
+import React, {Fragment, useState} from 'react';
 
-  function Message(props) {
-    console.log("submit button is working")
+
+function App() {
+  const [name, setName] = useState("");
+  const [pswd, setPswd] = useState("");
+  const [info, setInfo] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  
+
+  function infologin(props) {
+    setInfo(false);
+    if (name.length < 5) {
+      alert(" Name less than 5 characteres")
+    } else if (pswd.length < 5){
+      alert(" Pasword less than 5 characteres")
+    } else {
+      setInfo(true)
+      return
+    }
+  }
+
+  function Message (params) {
+    setSubmitMessage("password and name are corrrect");
+    <h3>{submitMessage}</h3>
+  }
+
+  function clear(props) {
+    setPswd("");
+    setName("");
   }
   return (
-    <div>
+    <Fragment>
       <p>name</p>
-      <input></input>
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
       <p>pswd</p>
-      <input></input>
-      <button onClick={Message}>Submit</button>
-    </div>
+      <input type="text" value={pswd} onChange={(e) => setPswd(e.target.value)}></input>
+      <button onClick={infologin} name={name} pswd={pswd}>Submit</button>
+      <button onClick={clear} name={name} pswd={pswd}>Clear</button>
+      { info ? <Message /> : null }
+    </Fragment>
   );
 }
 
