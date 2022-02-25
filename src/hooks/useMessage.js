@@ -13,7 +13,7 @@ const useMessage = () => {
     }
   };
 
-  return (loginMessage, infologin);
+  return [loginMessage, infologin];
 };
 
 export default useMessage;
