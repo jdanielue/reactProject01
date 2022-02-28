@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useMessage from "./hooks/useMessage";
 
 function Login() {
   const [name, setName] = useState("");
   const [pswd, setPswd] = useState("");
-  const [loginMessage, infologin] = useMessage();
+  const [loginMessage, setLoginMessage, infologin] = useMessage();
 
+  useEffect(() => {
+    infologin(name, pswd);
+    console.log("useEffect no dependency");
+  });
 
   function Message(props) {
     return <h3>{loginMessage}</h3>;
@@ -13,7 +17,11 @@ function Login() {
   function clear() {
     setPswd("");
     setName("");
-    // setSubmitMessage("");
+    setLoginMessage("");
+  }
+
+  function submitMessage() {
+    setLoginMessage("thanks for click me");
   }
   return (
     <div>
@@ -29,18 +37,11 @@ function Login() {
         value={pswd}
         onChange={(e) => setPswd(e.target.value)}
       ></input>
-      <button onClick={() => infologin(name, pswd)} name={name} pswd={pswd}>
-        Submit
-      </button>
-      <button
-        onClick={() => clear()}
-        name={name}
-        pswd={pswd}
-        // submitMessage={submitMessage}
-      >
+      <Message />
+      <button onClick={() => clear()} name={name} pswd={pswd}>
         Clear
       </button>
-      <Message />
+      <button onClick={() => submitMessage()}>Submit</button>
     </div>
   );
 }
