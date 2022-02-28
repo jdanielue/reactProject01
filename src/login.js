@@ -33,7 +33,7 @@ function Login() {
       ></input>
       <p>pswd</p>
       <input
-        type="text"
+        type="password"
         value={pswd}
         onChange={(e) => setPswd(e.target.value)}
       ></input>
